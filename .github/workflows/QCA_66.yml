@@ -34,8 +34,8 @@ jobs:
       matrix:
         TARGET: [IPQ60XX-WIFI-NO]
         REPO_INFO:
-          - {SOURCE: wahlaueh/lede, BRANCH: master, NAME: LEDE, SUFFIX: LEDE}
-          - {SOURCE: wahlaueh/lede, BRANCH: master, NAME: LEDE-FW4, SUFFIX: LEDE-FW4}
+          - {SOURCE: coolsnowwolf/lede, BRANCH: master, NAME: LEDE, SUFFIX: LEDE}
+          - {SOURCE: coolsnowwolf/lede, BRANCH: master, NAME: LEDE-FW4, SUFFIX: LEDE-FW4}
           #- {SOURCE: VIKINGYFY/immortalwrt, BRANCH: main, NAME: OWRT, SUFFIX: IMM}
           #- {SOURCE: LiBwrt-op/openwrt-6.x, BRANCH: openwrt-24.10, NAME: LibWRT, SUFFIX: IMM}
           #- {SOURCE: immortalwrt/immortalwrt, BRANCH: openwrt-24.10, NAME: ImmortalWRT, SUFFIX: IMM}
@@ -65,3 +65,4 @@ jobs:
       WRT_PACKAGE: ${{inputs.PACKAGE}}
       #仅输出配置文件
       WRT_TEST: ${{inputs.TEST}}
+      WRT_KERNAL: 6.6
