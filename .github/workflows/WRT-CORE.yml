@@ -37,7 +37,9 @@ on:
       WRT_TEST:
         required: false
         type: string
-
+      WRT_KERNEL:
+        required: false
+        type: string
 env:
   GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
   WRT_TARGET: ${{inputs.WRT_TARGET}}
@@ -193,12 +195,20 @@ jobs:
           make defconfig -j$(nproc)
           ./scripts/diffconfig.sh > seed.config
           cat seed.config
+          
+          if [[ "$WRT_KERNEL" == "6.6" ]]; then
+            # 删除 target/linux/qualcommax/patches-6.6/ 下包含 ipq5018 或 IPQ5018 的文件
+            find target/linux/qualcommax/patches-6.6/ -type f \( -iname "*ipq5018*" -o -iname "*IPQ5018*" \) -exec rm -f {} +
+          
+            # 修改 target/linux/qualcommax/Makefile 文件中的 KERNEL_PATCHVER
+            sed -i 's/^KERNEL_PATCHVER:=.*/KERNEL_PATCHVER:=6.6/' target/linux/qualcommax/Makefile
+          fi
 
       - name: Download Packages
         if: ${{ env.WRT_TEST != 'true' && env.WRT_NEED_COMPILE == 'true' }}
         run: |
           cd ./wrt/
-
+          
           make download -j$(nproc)
 
       - name: Compile Firmware
