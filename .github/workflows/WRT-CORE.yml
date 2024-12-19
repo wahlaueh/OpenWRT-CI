@@ -53,7 +53,7 @@ env:
   WRT_SUFFIX: ${{inputs.WRT_SUFFIX}}
   WRT_PACKAGE: ${{inputs.WRT_PACKAGE}}
   WRT_TEST: ${{inputs.WRT_TEST}}
-
+  WRT_KERNEL: ${{inputs.WRT_KERNEL}}
 jobs:
   core:
     name: ${{inputs.WRT_SOURCE}} - (${{inputs.WRT_NAME}})
