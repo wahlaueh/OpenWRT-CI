@@ -65,4 +65,4 @@ jobs:
       WRT_PACKAGE: ${{inputs.PACKAGE}}
       #仅输出配置文件
       WRT_TEST: ${{inputs.TEST}}
-      WRT_KERNAL: 6.6
+      WRT_KERNEL: 6.6
